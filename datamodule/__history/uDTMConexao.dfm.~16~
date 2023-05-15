@@ -1,0 +1,25 @@
+object dtmPrincipal: TdtmPrincipal
+  OldCreateOrder = False
+  Height = 172
+  Width = 198
+  object ConexaoDB: TZConnection
+    ControlsCodePage = cCP_UTF16
+    AutoEncodeStrings = True
+    Catalog = ''
+    Properties.Strings = (
+      'controls_cp=CP_UTF16'
+      'AutoEncodeStrings=True')
+    AutoCommit = False
+    TransactIsolationLevel = tiReadCommitted
+    Connected = True
+    HostName = '.\SERVERPORJETO'
+    Port = 1433
+    Database = 'Vendas'
+    User = 'sa'
+    Password = 'admin12345'
+    Protocol = 'mssql'
+    LibraryLocation = 'C:\Users\Raian Almeida\Documents\Programa 2023\ntwdblib.dll'
+    Left = 72
+    Top = 64
+  end
+end

@@ -1,0 +1,94 @@
+unit cCadCategoria;
+
+interface
+
+uses System.Classes,
+     Vcl.Controls,
+     Vcl.ExtCtrls,
+     Vcl.Dialogs,
+     ZAbstractConnection,
+     ZConnection;
+
+type
+ TCategoria = class
+   private
+      ConexaoDB:TZConnection;
+      F_categoriaId: integer;  //INT
+      F_descricao: string;    //VARCHAR
+      function getCodigo: integer;
+      function getDescricao: string;
+      procedure setCodigo(const Value: integer);
+      procedure setDescricao(const Value: string);
+
+   public
+      constructor Create(aConexao:TZConnection);
+      destructor Destroy; override;
+      function Gravar: Boolean;
+      function Atualizar: Boolean;
+      function Apagar: Boolean;
+      function Seleciona(id:integer):Boolean;
+
+   published
+      property Codigo:integer read getCodigo write setCodigo;
+      property Descricao:string read getDescricao write setDescricao;
+ end;
+
+implementation
+
+
+
+{ TCategoria }
+{$region 'Contrutor e Destrutor'}
+constructor TCategoria.Create(aConexao:TZConnection);
+begin
+  ConexaoDB := aConexao;
+end;
+
+destructor TCategoria.Destroy;
+begin
+
+  inherited;
+end;
+{$endregion}
+
+function TCategoria.Apagar: Boolean;
+begin
+
+end;
+
+function TCategoria.Atualizar: Boolean;
+begin
+
+end;
+
+function TCategoria.Gravar: Boolean;
+begin
+
+end;
+
+function TCategoria.Seleciona(id: integer): Boolean;
+begin
+
+end;
+
+function TCategoria.getCodigo: integer;
+begin
+   Result := Self.F_categoriaId;
+end;
+
+function TCategoria.getDescricao: string;
+begin
+   Result := Self.F_descricao;
+end;
+
+procedure TCategoria.setCodigo(const Value: integer);
+begin
+  Self.F_categoriaId := Value;
+end;
+
+procedure TCategoria.setDescricao(const Value: string);
+begin
+   Self.F_descricao := Value;
+end;
+
+end.

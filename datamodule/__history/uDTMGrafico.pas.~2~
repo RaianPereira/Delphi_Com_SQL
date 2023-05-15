@@ -1,0 +1,25 @@
+unit uDTMGrafico;
+
+interface
+
+uses
+  System.SysUtils, System.Classes;
+
+type
+  TDTMGrafico = class(TDataModule)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DTMGrafico: TDTMGrafico;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

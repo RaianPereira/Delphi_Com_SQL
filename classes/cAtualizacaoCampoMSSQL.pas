@@ -1,0 +1,91 @@
+unit cAtualizacaoCampoMSSQL;
+
+interface
+uses System.Classes,
+     Vcl.Controls,
+     Vcl.ExtCtrls,
+     Vcl.Dialogs,
+     ZAbstractConnection,
+     ZConnection,
+     ZAbstractRODataset,
+     ZAbstractDataset,
+     ZDataset,
+     Data.DB,
+     System.SysUtils,
+     cAtualizacaoBancoDeDados;
+
+type
+  TAtualizacaoCampoMSSQL = class(TAtualizaBancoDados)
+  private
+    function CampoExisteNaTabela(aNomeTabela, aCampo: string): Boolean;
+    procedure Versao1;
+  protected
+  public
+    Constructor Create(aConexao:TZConnection);
+    destructor Destroy; override;
+
+  end;
+
+implementation
+
+{ TAtualizacaoCampoMSSQL }
+
+function TAtualizacaoCampoMSSQL.CampoExisteNaTabela(aNomeTabela,
+  aCampo: string): Boolean;
+var Qry:TZQuery;
+begin
+  try
+    Result:=false;
+    Qry:=TZQuery.Create(nil);
+    Qry.Connection:=ConexaoDB;
+    Qry.SQL.Clear;
+    Qry.SQL.Add(' Select Count(COLUMN_NAME) As Qtde ');
+    Qry.SQL.Add(' from INFORMATION_SCHEMA.COLUMNS ');
+    Qry.SQL.Add(' where TABLE_NAME=:Tabela ');
+    Qry.SQL.Add(' AND COLUMN_NAME=:Campo ');
+    Qry.ParamByName('Tabela').AsString:=aNomeTabela;
+    Qry.ParamByName('Campo').AsString:=aCampo;
+    Qry.Open;
+
+    if Qry.FieldByName('Qtde').AsInteger>0 then
+       Result:=true;
+
+  finally
+    Qry.Close;
+    if Assigned(Qry) then
+       FreeAndNil(Qry);
+  end;
+end;
+
+constructor TAtualizacaoCampoMSSQL.Create(aConexao: TZConnection);
+begin
+  ConexaoDB:=aConexao;
+  Versao1;
+end;
+
+destructor TAtualizacaoCampoMSSQL.Destroy;
+begin
+
+  inherited;
+end;
+
+procedure TAtualizacaoCampoMSSQL.Versao1;
+begin
+   if not CampoExisteNaTabela('categorias','teste') then
+   begin
+     ExecutaDiretoBancoDeDados(' Alter Table categorias ADD teste varchar(30) null ');
+   end;
+
+   if CampoExisteNaTabela('categorias','teste') then
+   begin
+     ExecutaDiretoBancoDeDados(' Alter Table categorias DROP COLUMN teste ');
+   end;
+
+   if not CampoExisteNaTabela('produtos','foto') then
+   begin
+     ExecutaDiretoBancoDeDados('Alter Table produtos ADD foto VarBinary(MAX) ');
+   end;
+
+end;
+
+end.

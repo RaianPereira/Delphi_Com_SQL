@@ -1,0 +1,121 @@
+inherited frmCadAcaoAcesso: TfrmCadAcaoAcesso
+  Caption = 'Cadastro De A'#231#227'o de Acesso'
+  ClientHeight = 540
+  ClientWidth = 779
+  ExplicitLeft = -162
+  ExplicitWidth = 785
+  ExplicitHeight = 569
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited pgcPrincipal: TPageControl
+    Width = 779
+    Height = 494
+    ExplicitWidth = 779
+    ExplicitHeight = 494
+    inherited tabListagem: TTabSheet
+      ExplicitWidth = 771
+      ExplicitHeight = 466
+      inherited pnlListagemTopo: TPanel
+        Width = 771
+        ExplicitWidth = 771
+      end
+      inherited grdListagem: TDBGrid
+        Width = 771
+        Height = 413
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'acaoAcessoId'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'descricao'
+            Width = 358
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'chave'
+            Width = 310
+            Visible = True
+          end>
+      end
+    end
+    inherited tabManutencao: TTabSheet
+      ExplicitWidth = 771
+      ExplicitHeight = 466
+      object edtAcaoAcessoId: TLabeledEdit
+        Tag = 1
+        Left = 29
+        Top = 56
+        Width = 121
+        Height = 21
+        EditLabel.Width = 33
+        EditLabel.Height = 13
+        EditLabel.Caption = 'C'#243'digo'
+        MaxLength = 10
+        NumbersOnly = True
+        TabOrder = 0
+      end
+      object edtDescricao: TLabeledEdit
+        Tag = 2
+        Left = 29
+        Top = 128
+        Width = 550
+        Height = 21
+        EditLabel.Width = 46
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Descri'#231#227'o'
+        MaxLength = 100
+        TabOrder = 1
+      end
+      object edtChave: TLabeledEdit
+        Tag = 2
+        Left = 29
+        Top = 200
+        Width = 550
+        Height = 21
+        EditLabel.Width = 31
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Chave'
+        MaxLength = 60
+        TabOrder = 2
+      end
+    end
+  end
+  inherited pnlRodape: TPanel
+    Top = 494
+    Width = 779
+    ExplicitTop = 494
+    ExplicitWidth = 779
+    inherited btnFechar: TBitBtn
+      Left = 688
+      ExplicitLeft = 688
+    end
+    inherited btnNavigator: TDBNavigator
+      Hints.Strings = ()
+    end
+  end
+  inherited QryListagem: TZQuery
+    SQL.Strings = (
+      'select acaoAcessoId, descricao, chave from acaoAcesso')
+    object QryListagemacaoAcessoId: TIntegerField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'acaoAcessoId'
+      ReadOnly = True
+    end
+    object QryListagemdescricao: TWideStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'descricao'
+      Required = True
+      Size = 100
+    end
+    object QryListagemchave: TWideStringField
+      DisplayLabel = 'Chave'
+      FieldName = 'chave'
+      Required = True
+      Size = 60
+    end
+  end
+end

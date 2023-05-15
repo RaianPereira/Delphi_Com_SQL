@@ -1,0 +1,67 @@
+unit cConsultaVenda;
+
+interface
+
+uses System.Classes,
+     Vcl.Controls,
+     Vcl.ExtCtrls,
+     Vcl.Dialogs,
+     ZAbstractConnection,
+     ZConnection,
+     ZAbstractRODataset,
+     ZAbstractDataset,
+     ZDataset,
+     System.SysUtils;
+
+implementation
+
+type
+  TConsultaVenda = class
+    private
+      ConexaoDB:TZConnection;
+      F_produto: string;
+      F_dataVenda: TDateTime;
+      F_valor: currency;
+      F_email: string;
+      F_valorUnitario: currency;
+      F_totalVenda: currency;
+      F_categoria: string;
+      F_nome: string;
+      F_telefone: string;
+    public
+      constructor Create(aConexao:TZConnection);
+      destructor Destroy; override;
+      function Selecionar(id:integer):Boolean;
+    published
+      property nome: string read F_nome write F_nome;
+      property telefone: string read F_telefone write F_telefone;
+      property email: string read F_email write F_email;
+      property produto: string read F_produto write F_produto;
+      property valor: currency read F_valor write F_valor;
+      property categoria: string read F_categoria write F_categoria;
+      property valorUnitario: currency read F_valorUnitario write F_valorUnitario;
+      property dataVenda: TDateTime read F_dataVenda write F_dataVenda;
+      property totalVenda: currency read F_totalVenda write F_totalVenda;
+
+  end;
+
+{$region 'Construtores e Destrutores'}
+constructor TConsultaVenda.Create(aConexao:TZConnection);
+begin
+  ConexaoDB:=aConexao;
+end;
+
+destructor TConsultaVenda.Destroy;
+begin
+
+  inherited;
+end;
+function TConsultaVenda.Selecionar(id: integer): Boolean;
+begin
+
+end;
+
+{$endregion}
+
+
+end.

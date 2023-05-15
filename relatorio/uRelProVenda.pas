@@ -1,0 +1,89 @@
+unit uRelProVenda;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RLReport, Data.DB, ZAbstractRODataset,
+  ZAbstractDataset, ZDataset, RLXLSFilter, RLFilters, RLPDFFilter;
+
+type
+  TfrmRelProVenda = class(TForm)
+    Relatorio: TRLReport;
+    Cabecalho: TRLBand;
+    RLLabel1: TRLLabel;
+    RLDraw1: TRLDraw;
+    Rodape: TRLBand;
+    RLDraw2: TRLDraw;
+    RLSystemInfo1: TRLSystemInfo;
+    RLSystemInfo2: TRLSystemInfo;
+    RLSystemInfo3: TRLSystemInfo;
+    RLLabel2: TRLLabel;
+    RLLabel3: TRLLabel;
+    RLPDFFilter1: TRLPDFFilter;
+    RLXLSFilter1: TRLXLSFilter;
+    BandaDoGrupo: TRLGroup;
+    RLBand3: TRLBand;
+    RLBand1: TRLBand;
+    RLDBText1: TRLDBText;
+    RLDBText2: TRLDBText;
+    RLDBText4: TRLDBText;
+    RLLabel8: TRLLabel;
+    RLDBText5: TRLDBText;
+    QryVendas: TZQuery;
+    dtsVendas: TDataSource;
+    RLBand5: TRLBand;
+    RLDraw4: TRLDraw;
+    RLLabel6: TRLLabel;
+    RLDBResult2: TRLDBResult;
+    dtsVendasItens: TDataSource;
+    QryVendasItens: TZQuery;
+    QryVendasvendaId: TIntegerField;
+    QryVendasclienteId: TIntegerField;
+    QryVendasnome: TWideStringField;
+    QryVendasdataVenda: TDateTimeField;
+    QryVendastotalVenda: TFloatField;
+    QryVendasItensvendaId: TIntegerField;
+    QryVendasItensprodutoId: TIntegerField;
+    QryVendasItensNome: TWideStringField;
+    QryVendasItensquantidade: TFloatField;
+    QryVendasItensvalorUnitario: TFloatField;
+    QryVendasItenstotalProduto: TFloatField;
+    RLLabel5: TRLLabel;
+    RLLabel9: TRLLabel;
+    RLLabel7: TRLLabel;
+    RLSubDetail1: TRLSubDetail;
+    RLBand2: TRLBand;
+    RLBand4: TRLBand;
+    RLDBText3: TRLDBText;
+    RLLabel4: TRLLabel;
+    RLDBText6: TRLDBText;
+    RLLabel10: TRLLabel;
+    RLDBText7: TRLDBText;
+    RLDBText8: TRLDBText;
+    RLDBText9: TRLDBText;
+    RLLabel11: TRLLabel;
+    RLLabel12: TRLLabel;
+    RLLabel13: TRLLabel;
+    procedure FormDestroy(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRelProVenda: TfrmRelProVenda;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmRelProVenda.FormDestroy(Sender: TObject);
+begin
+   QryVendas.Close;
+   QryVendasItens.Close;
+end;
+
+end.

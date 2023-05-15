@@ -1,0 +1,57 @@
+unit uRelCadProduto;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RLReport, Data.DB, ZAbstractRODataset,
+  ZAbstractDataset, ZDataset, RLXLSFilter, RLFilters, RLPDFFilter;
+
+type
+  TfrmRelCadProduto = class(TForm)
+    Relatorio: TRLReport;
+    Cabecalho: TRLBand;
+    RLLabel1: TRLLabel;
+    RLDraw1: TRLDraw;
+    Rodape: TRLBand;
+    RLDraw2: TRLDraw;
+    RLSystemInfo1: TRLSystemInfo;
+    RLSystemInfo2: TRLSystemInfo;
+    RLSystemInfo3: TRLSystemInfo;
+    RLLabel2: TRLLabel;
+    RLLabel3: TRLLabel;
+    RLBand1: TRLBand;
+    RLDBText1: TRLDBText;
+    RLDBText2: TRLDBText;
+    RLDBText3: TRLDBText;
+    RLDBText4: TRLDBText;
+    RLBand2: TRLBand;
+    RLPanel1: TRLPanel;
+    RLLabel5: TRLLabel;
+    RLLabel4: TRLLabel;
+    RLLabel6: TRLLabel;
+    RLLabel7: TRLLabel;
+    QryProduto: TZQuery;
+    dtsProduto: TDataSource;
+    QryProdutoprodutoId: TIntegerField;
+    QryProdutonome: TWideStringField;
+    QryProdutovalor: TFloatField;
+    QryProdutoquantidade: TFloatField;
+    RLPDFFilter1: TRLPDFFilter;
+    RLXLSFilter1: TRLXLSFilter;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRelCadProduto: TfrmRelCadProduto;
+
+implementation
+
+{$R *.dfm}
+
+
+
+end.

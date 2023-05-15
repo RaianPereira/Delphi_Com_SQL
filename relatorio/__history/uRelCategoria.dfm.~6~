@@ -1,0 +1,235 @@
+object frmRelCategoria: TfrmRelCategoria
+  Left = 0
+  Top = 0
+  Caption = 'frmRelCategoria'
+  ClientHeight = 779
+  ClientWidth = 746
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Relatorio: TRLReport
+    Left = 0
+    Top = 0
+    Width = 794
+    Height = 1123
+    DataSource = dtsCategorias
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    object Cabecalho: TRLBand
+      Left = 38
+      Top = 38
+      Width = 718
+      Height = 62
+      BandType = btHeader
+      object RLLabel1: TRLLabel
+        Left = 6
+        Top = 10
+        Width = 204
+        Height = 34
+        Caption = 'Listagem de Categorias'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -27
+        Font.Name = 'Agency FB'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLDraw1: TRLDraw
+        Left = 0
+        Top = 44
+        Width = 718
+        Height = 18
+        Align = faBottom
+        DrawKind = dkLine
+        Pen.Width = 2
+      end
+    end
+    object Rodape: TRLBand
+      Left = 38
+      Top = 141
+      Width = 718
+      Height = 44
+      BandType = btFooter
+      object RLDraw2: TRLDraw
+        Left = 0
+        Top = 0
+        Width = 718
+        Height = 18
+        Align = faTop
+        DrawKind = dkLine
+        Pen.Width = 2
+      end
+      object RLSystemInfo1: TRLSystemInfo
+        Left = 0
+        Top = 17
+        Width = 59
+        Height = 24
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -19
+        Font.Name = 'Agency FB'
+        Font.Style = []
+        Info = itFullDate
+        ParentFont = False
+        Text = ''
+      end
+      object RLSystemInfo2: TRLSystemInfo
+        Left = 654
+        Top = 23
+        Width = 25
+        Height = 17
+        Info = itPageNumber
+        Text = ''
+      end
+      object RLSystemInfo3: TRLSystemInfo
+        Left = 682
+        Top = 23
+        Width = 25
+        Height = 16
+        Alignment = taRightJustify
+        Info = itLastPageNumber
+        Text = ''
+      end
+      object RLLabel2: TRLLabel
+        Left = 677
+        Top = 23
+        Width = 6
+        Height = 17
+        Caption = '/'
+      end
+      object RLLabel3: TRLLabel
+        Left = 607
+        Top = 22
+        Width = 40
+        Height = 17
+        Caption = 'P'#225'gina:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Agency FB'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+    end
+    object RLBand1: TRLBand
+      Left = 38
+      Top = 121
+      Width = 718
+      Height = 20
+      object RLDBText1: TRLDBText
+        Left = 3
+        Top = 0
+        Width = 50
+        Height = 20
+        DataField = 'categoriaId'
+        DataSource = dtsCategorias
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Agency FB'
+        Font.Style = []
+        ParentFont = False
+        Text = ''
+      end
+      object RLDBText2: TRLDBText
+        Left = 76
+        Top = -2
+        Width = 45
+        Height = 20
+        DataField = 'descricao'
+        DataSource = dtsCategorias
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Agency FB'
+        Font.Style = []
+        ParentFont = False
+        Text = ''
+      end
+    end
+    object RLBand2: TRLBand
+      Left = 38
+      Top = 100
+      Width = 718
+      Height = 21
+      BandType = btColumnHeader
+      object RLPanel1: TRLPanel
+        Left = 0
+        Top = 0
+        Width = 718
+        Height = 21
+        Align = faClient
+        Color = clInfoBk
+        ParentColor = False
+        Transparent = False
+      end
+      object RLLabel5: TRLLabel
+        Left = 76
+        Top = 1
+        Width = 54
+        Height = 20
+        Caption = 'Descri'#231#227'o'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Agency FB'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel4: TRLLabel
+        Left = 0
+        Top = 1
+        Width = 37
+        Height = 20
+        Caption = 'C'#243'digo'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Agency FB'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+    end
+  end
+  object QryCategorias: TZQuery
+    Connection = dtmPrincipal.ConexaoDB
+    Active = True
+    SQL.Strings = (
+      'select categoriaId,'
+      '       descricao'
+      '   from categorias')
+    Params = <>
+    Left = 424
+    Top = 224
+    object QryCategoriascategoriaId: TIntegerField
+      FieldName = 'categoriaId'
+      ReadOnly = True
+    end
+    object QryCategoriasdescricao: TWideStringField
+      FieldName = 'descricao'
+      Size = 50
+    end
+  end
+  object dtsCategorias: TDataSource
+    DataSet = QryCategorias
+    Left = 512
+    Top = 224
+  end
+  object RLPDFFilter1: TRLPDFFilter
+    DocumentInfo.Creator = 
+      'FortesReport Community Edition v4.0.1.2 \251 Copyright '#194#169' 1999-2' +
+      '021 Fortes Inform'#195#161'tica'
+    DisplayName = 'Documento PDF'
+    Left = 464
+    Top = 280
+  end
+end

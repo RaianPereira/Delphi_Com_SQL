@@ -1,0 +1,193 @@
+object frmUsuarioVsAcoes: TfrmUsuarioVsAcoes
+  Left = 0
+  Top = 0
+  Caption = 'Usu'#225'rio Vs A'#231#245'es'
+  ClientHeight = 557
+  ClientWidth = 822
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Splitter1: TSplitter
+    Left = 290
+    Top = 0
+    Height = 516
+    ExplicitLeft = 304
+    ExplicitTop = 280
+    ExplicitHeight = 100
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 290
+    Height = 516
+    Align = alLeft
+    TabOrder = 0
+    object DBGrid1: TDBGrid
+      Left = 1
+      Top = 1
+      Width = 288
+      Height = 514
+      Align = alClient
+      DataSource = dtsUsuario
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'usuarioId'
+          Width = 53
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'Nome'
+          Width = 204
+          Visible = True
+        end>
+    end
+  end
+  object Panel2: TPanel
+    Left = 293
+    Top = 0
+    Width = 529
+    Height = 516
+    Align = alClient
+    TabOrder = 1
+    ExplicitLeft = 344
+    ExplicitTop = 176
+    ExplicitWidth = 185
+    ExplicitHeight = 41
+    object DBGrid2: TDBGrid
+      Left = 1
+      Top = 1
+      Width = 527
+      Height = 514
+      Align = alClient
+      DataSource = dtsAcoes
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'usuarioId'
+          Visible = False
+        end
+        item
+          Expanded = False
+          FieldName = 'acaoAcessoId'
+          Visible = False
+        end
+        item
+          Expanded = False
+          FieldName = 'descricao'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'ativo'
+          Visible = False
+        end>
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 516
+    Width = 822
+    Height = 41
+    Align = alBottom
+    TabOrder = 2
+    ExplicitLeft = 288
+    ExplicitTop = 368
+    ExplicitWidth = 185
+  end
+  object QryUsuario: TZQuery
+    Connection = dtmPrincipal.ConexaoDB
+    SQL.Strings = (
+      'select usuarioId,'
+      '          Nome'
+      'from usuarios')
+    Params = <>
+    Left = 40
+    Top = 400
+    object QryUsuariousuarioId: TIntegerField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'usuarioId'
+      ReadOnly = True
+    end
+    object QryUsuarioNome: TWideStringField
+      FieldName = 'Nome'
+      Required = True
+      Size = 50
+    end
+  end
+  object QryAcoes: TZQuery
+    Connection = dtmPrincipal.ConexaoDB
+    SQL.Strings = (
+      'select ua.usuarioId,'
+      '       ua.acaoAcessoId,'
+      '       a.descricao,'
+      '       ua.ativo'
+      '  from usuariosAcaoAcesso As ua'
+      
+        '   inner join acaoAcesso As a on a.acaoAcessoId = ua.acaoAcessoI' +
+        'd'
+      'where ua.usuarioId=:usuarioId')
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'usuarioId'
+        ParamType = ptUnknown
+      end>
+    Left = 341
+    Top = 408
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'usuarioId'
+        ParamType = ptUnknown
+      end>
+    object QryAcoesusuarioId: TIntegerField
+      FieldName = 'usuarioId'
+      Required = True
+    end
+    object QryAcoesacaoAcessoId: TIntegerField
+      FieldName = 'acaoAcessoId'
+      Required = True
+    end
+    object QryAcoesdescricao: TWideStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'descricao'
+      Required = True
+      Size = 100
+    end
+    object QryAcoesativo: TBooleanField
+      FieldName = 'ativo'
+      Required = True
+    end
+  end
+  object dtsUsuario: TDataSource
+    DataSet = QryUsuario
+    Left = 120
+    Top = 392
+  end
+  object dtsAcoes: TDataSource
+    DataSet = QryAcoes
+    Left = 421
+    Top = 432
+  end
+end

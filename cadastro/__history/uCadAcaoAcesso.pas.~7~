@@ -1,0 +1,50 @@
+unit uCadAcaoAcesso;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaHeranca, Data.DB,
+  ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.DBCtrls, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls, Vcl.ComCtrls, cAcaoAcesso, uEnum, uDTMConexao;
+
+type
+  TfrmCadAcaoAcesso = class(TfrmTelaHeranca)
+    QryListagemacaoAcessoId: TIntegerField;
+    QryListagemdescricao: TWideStringField;
+    QryListagemchave: TWideStringField;
+    edtAcaoAcessoId: TLabeledEdit;
+    edtDescricao: TLabeledEdit;
+    edtChave: TLabeledEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    oAcaoAcesso:TAcaoAcesso;
+    function Gravar(EstadoDoCadastro:TEstadoDoCadastro):Boolean; override;
+    function Apagar:Boolean; override;
+  end;
+
+var
+  frmCadAcaoAcesso: TfrmCadAcaoAcesso;
+
+implementation
+
+{$R *.dfm}
+
+{ TfrmCadAcaoAcesso }
+
+function TfrmCadAcaoAcesso.Apagar: Boolean;
+begin
+  if oAcaoAcesso.Selecionar(QryListagem.FieldByName('acaoAcessoId').AsInteger) then
+  begin
+  result:= oAcaoAcesso.Apagar;
+  end;
+end;
+
+function TfrmCadAcaoAcesso.Gravar(EstadoDoCadastro: TEstadoDoCadastro): Boolean;
+begin
+
+end;
+
+end.

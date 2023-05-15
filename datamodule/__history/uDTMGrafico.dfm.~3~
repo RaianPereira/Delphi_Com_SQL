@@ -1,0 +1,29 @@
+object DTMGrafico: TDTMGrafico
+  OldCreateOrder = False
+  Height = 411
+  Width = 594
+  object QryProdutoEstoque: TZQuery
+    Connection = dtmPrincipal.ConexaoDB
+    Active = True
+    SQL.Strings = (
+      
+        'select  CONVERT (varchar, produtoId) + '#39'-'#39'+nome as Label, quanti' +
+        'dade as Value from produtos')
+    Params = <>
+    Left = 48
+    Top = 48
+    object QryProdutoEstoqueLabel: TWideStringField
+      FieldName = 'Label'
+      ReadOnly = True
+      Size = 91
+    end
+    object QryProdutoEstoqueValue: TFloatField
+      FieldName = 'Value'
+    end
+  end
+  object dtsProdutoEstoque: TDataSource
+    DataSet = QryProdutoEstoque
+    Left = 152
+    Top = 48
+  end
+end

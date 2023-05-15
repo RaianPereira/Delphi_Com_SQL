@@ -1,0 +1,83 @@
+unit cAtualizacaoTabelaMSSQL;
+
+interface
+
+uses System.Classes,
+     Vcl.Controls,
+     Vcl.ExtCtrls,
+     Vcl.Dialogs,
+     ZAbstractConnection,
+     ZConnection,
+     ZAbstractRODataset,
+     ZAbstractDataset,
+     ZDataset,
+     Data.DB,
+     System.SysUtils,
+     cAtualizacaoBancoDeDados;
+
+type
+  TAtualizacaoTableMSSQL = class(TAtualizaBancoDados)
+
+  private
+    function TabelaExiste(aNomeTabela:string): Boolean;
+    procedure Categoria;
+
+  protected
+
+  public
+    constructor Create(aConexao:TZConnection);
+    destructor Destroy; override;
+  end;
+
+implementation
+
+{ TAtualizacaoTableMSSQL }
+
+constructor TAtualizacaoTableMSSQL.Create(aConexao: TZConnection);
+begin
+  ConexaoDB:=aConexao;
+  Categoria;
+end;
+
+destructor TAtualizacaoTableMSSQL.Destroy;
+begin
+
+  inherited;
+end;
+
+function TAtualizacaoTableMSSQL.TabelaExiste(aNomeTabela: string): Boolean;
+var Qry:TZQuery;
+begin
+  try
+    Result:=false;
+    Qry:=TZQuery.Create(nil);
+    Qry.Connection:=ConexaoDB;
+    Qry.SQL.Clear;
+    Qry.SQL.Add(' Select OBJECT_ID (:NomeTabela) As ID');
+    Qry.ParamByName('NomeTabela').AsString:=aNomeTabela;
+    Qry.Open;
+
+    if Qry.FieldByName('ID').AsInteger>0 then
+       Result:=true;
+  finally
+    Qry.Close;
+    if Assigned(Qry) then
+      FreeAndNil(Qry);
+  end;
+end;
+
+procedure TAtualizacaoTableMSSQL.Categoria;
+begin
+  if not TabelaExiste('categorias') then
+  begin
+    ExecutaDiretoBancoDeDados(
+    ' create table categorias( '+
+    ' categoriaId int identity(1,1) not null, '+
+    ' descricao varchar(30) null, ' +
+    ' primary key (categoriaId) ' +
+    ' ) '
+    );
+  end;
+end;
+
+end.

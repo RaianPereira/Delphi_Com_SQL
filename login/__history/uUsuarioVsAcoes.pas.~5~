@@ -1,0 +1,51 @@
+unit uUsuarioVsAcoes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Data.DB,
+  ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls, Vcl.Buttons;
+
+type
+  TfrmUsuarioVsAcoes = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    Splitter1: TSplitter;
+    DBGrid1: TDBGrid;
+    DBGrid2: TDBGrid;
+    QryUsuario: TZQuery;
+    QryAcoes: TZQuery;
+    dtsUsuario: TDataSource;
+    dtsAcoes: TDataSource;
+    QryUsuariousuarioId: TIntegerField;
+    QryUsuarioNome: TWideStringField;
+    QryAcoesusuarioId: TIntegerField;
+    QryAcoesacaoAcessoId: TIntegerField;
+    QryAcoesdescricao: TWideStringField;
+    QryAcoesativo: TBooleanField;
+    btnFechar: TBitBtn;
+    procedure btnFecharClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmUsuarioVsAcoes: TfrmUsuarioVsAcoes;
+
+implementation
+
+{$R *.dfm}
+
+uses uDTMConexao;
+
+procedure TfrmUsuarioVsAcoes.btnFecharClick(Sender: TObject);
+begin
+  Close;
+end;
+
+end.
